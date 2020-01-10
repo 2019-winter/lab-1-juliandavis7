@@ -51,25 +51,17 @@ import numpy as np
 
 ```python
 
-a = np.ones((6, 4))
-a = a + 1
-print(a)
+a = np.ones((6, 4), dtype=int) * 2
+a
 
 ```
 
 ## Exercise 2
 
 ```python
-b = np.ones((6, 4))
-
-x = np.eye(4) * 2
-
-newrow = [0, 0, 0, 0]
-x = np.vstack([x, newrow])
-x = np.vstack([x, newrow])
-
-b = b + x
-print(b)
+b = np.ones((6, 4), dtype=int)
+b[range(4), range(4)] = 3
+b
 ```
 
 ## Exercise 3
@@ -82,13 +74,13 @@ print(b)
 
 c = a * b
 # c = np.dot(a, b)
-print(c)
+c
 ```
 
 ## Exercise 4
 
 ```python
-The results are in different shapes order matters in matrix multiplication.
+The results are in different shapes because order matters in matrix multiplication.
 ```
 
 ```python
@@ -113,7 +105,7 @@ hello()
 
 ```python
 def arrCalcs():
-    a = [[1, 2, 3, 4], [-10, 8, 7, 32]]
+    a = np.random.rand(4,4)
     sum_a = np.sum(a); mean_a = np.mean(a); med_a = np.median(a)
     print("A: Sum", sum_a, "Mean", mean_a, "Median", med_a)
     
@@ -121,6 +113,10 @@ arrCalcs()
 ```
 
 ## Exercise 7
+
+```python
+np.where(b == 3)[0]
+```
 
 ```python
 def countOnes(arr):
@@ -136,8 +132,6 @@ def countOnes(arr):
 print("First count:", countOnes(b))
 
 indices = np.where(b == 1)
-
-print(b[indices])
 sum2 = np.sum(b[indices])
 print("Second count:", sum2)
 
@@ -158,10 +152,8 @@ import pandas as pd
 ```
 
 ```python
-lst = [2, 2, 2, 2]
-a = pd.DataFrame([lst, lst, lst, lst, lst, lst])
-
-print(a)
+a = pd.DataFrame(np.ones((6, 4)) * 2)
+a
 ```
 
 ## Exercise 9
@@ -175,8 +167,7 @@ lst4 = [1, 1, 1, 3]
 lst5 = [1, 1, 1, 1]
 
 b = pd.DataFrame([lst1, lst2, lst3, lst4, lst5, lst5])
-
-print(b)
+b
 ```
 
 ## Exercise 10
@@ -188,7 +179,7 @@ same answer as exercise 3
 ```python
 c = a * b
 # c = a.dot(b)
-print(c)
+c
 
 ```
 
@@ -244,8 +235,8 @@ titanic_df.set_index('sex',inplace=True)
 ```
 
 ```python
-titanic_df.loc["female"]
-# there are 466 female passengers
+len(titanic_df.loc["female"])
+
 ```
 
 ## Exercise 14
@@ -254,4 +245,8 @@ How do you reset the index?
 ```python
 titanic_df.reset_index(inplace = True)
 titanic_df
+```
+
+```python
+
 ```
